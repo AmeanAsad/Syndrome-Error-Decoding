@@ -10,8 +10,9 @@ writing a random text generator. Thanks to https://www.wordfrequency.info/ for s
 
 Here are some results from the simulation:
 
-[Simulation Plot](Syndrome-Error-Decoding/Simulation_Results.png)
+![Simulation Plot](Syndrome-Error-Decoding/Simulation_Results.png)
 
-
+![Percentage Error Table](Syndrome-Error-Decoding/SimulationTable.png)
+      
 
       

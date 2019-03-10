@@ -12,7 +12,7 @@ Here are some results from the simulation:
 
 ![Simulation Plot](Syndrome-Error-Decoding/Simulation_Results.png)
 
-![Percentage Error Table](Syndrome-Error-Decoding/SimulationTable.png)
+![Percentage Error Table](https://github.com/AmeanAsad/Syndrome-Error-Decoding/blob/master/SimulationTable.png?raw=true)
       
 
       

@@ -19,4 +19,6 @@ This is the Error Percentage Table:
 ![Percentage Error Table](https://github.com/AmeanAsad/Syndrome-Error-Decoding/blob/master/SimulationTable.png?raw=true)
       
 
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu" /></a>
+
       

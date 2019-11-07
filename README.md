@@ -1,6 +1,5 @@
 # Syndrome-Error-Decoding
 
-<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu" /></a>
 
 I developed a class that is able to develop any (n, k) linear code including by generating a generator matrix, parity check matrix, 
 and a syndrome decoding table. I used that class to develop an ASCII code class in order to correct errors in the ascii representation 

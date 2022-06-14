@@ -1,5 +1,6 @@
 # Syndrome-Error-Decoding
 
+**Update June 2022:** The simulation plot is not a very informative plot due to the time being multiplied by the error percentage. There is an issue of relative scales and also multiplication by zero. I do not recommend using this plot and I plan to make changes to make it more informative. 
 
 I developed a class that is able to develop any (n, k) linear code including by generating a generator matrix, parity check matrix, 
 and a syndrome decoding table. I used that class to develop an ASCII code class in order to correct errors in the ascii representation 

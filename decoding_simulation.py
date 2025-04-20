@@ -14,8 +14,8 @@ import numpy as np
 import random
 import matplotlib.pyplot as pl
 import time
-from decoding import AsciiCode, transform_text_to_binary
-from text_generator import randomized_text_generator
+from ascii_code import AsciiCode, LinearCode
+from ascii_utils import randomized_text_generator, transform_text_to_binary
 
 
 def distort_message(binary_letters, generator_m, k, n):
@@ -169,4 +169,4 @@ def visualization(word_limit, num_trials):
     return None
 
 
-# visualization(500, 10)
+visualization(50, 5)

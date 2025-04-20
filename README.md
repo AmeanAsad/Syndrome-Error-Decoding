@@ -41,6 +41,12 @@ cd syndrome-error-correction
 pip install -r requirements.txt
 ```
 
+### Simulation Results
+
+![Simulation Results](https://github.com/AmeanAsad/Syndrome-Error-Decoding/blob/master/simulation_result.png)
+*Sample simulation results with 500 words, 10 trials, comparing different code parameters*
+
+
 ## Usage Examples
 
 ### Basic Linear Code Operations

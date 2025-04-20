@@ -36,8 +36,8 @@ Key concepts:
 ## Installation
 
 ```bash
-git clone https://github.com/ameanasad/syndrome-error-correction.git
-cd syndrome-error-correction
+git clone https://github.com/AmeanAsad/Syndrome-Error-Decoding.git
+cd Syndrome-Error-Correction
 pip install -r requirements.txt
 ```
 
@@ -81,7 +81,7 @@ text = "A"
 binary = ascii_code.ascii_to_bin[text]
 
 # Simulate transmission error
-received = [1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0]  # Corrupted codeword
+received = ascii_code.simulate_channel_noise(binary, error_rate=0.1)
 decoded = ascii_code.decode_letter(received)
 print(f"Original: {text}, Decoded: {decoded}")
 
@@ -89,8 +89,9 @@ print(f"Original: {text}, Decoded: {decoded}")
 def process_text(text, ascii_code):
     decoded_text = ""
     for char in text:
-        # In real implementation, you'd include encoding and channel simulation
-        received = # ... simulated received codeword
+        binary = ascii_code.ascii_to_bin[char]
+        encoded = ascii_code.encode_letter(binary)
+        received = ascii_code.simulate_channel_noise(encoded, error_rate=0.1)
         decoded_char = ascii_code.decode_letter(received)
         decoded_text += decoded_char
     return decoded_text
@@ -129,18 +130,6 @@ visualization(
 
 ## Performance Analysis
 
-### Error Correction Capability
-
-The library's error correction performance depends on:
-1. Code rate (k/n)
-2. Minimum Hamming distance
-3. Channel error rate
-
-Typical performance metrics:
-- Single error correction guaranteed
-- Some double error detection capability
-- Performance degrades with burst errors
-
 ### Computational Complexity
 
 - Encoding: O(k×n) per character
@@ -148,30 +137,46 @@ Typical performance metrics:
 - Decoding table lookup: O(1)
 - Total processing: O(n²) per character
 
-## Advanced Features
-
 ### Custom Error Patterns
 ```python
+from linear_code import LinearCode
+
 # Define custom error patterns for testing
 error_patterns = [
     [1,0,0,0,0,0,0,0],  # Single bit error
     [1,1,0,0,0,0,0,0],  # Double bit error
     [1,1,1,0,0,0,0,0],  # Triple bit error
 ]
+
+code = LinearCode(k=8, n=12)
+for pattern in error_patterns:
+    corrected = code.correct_errors(pattern)
+    print(f"Error pattern: {pattern}")
+    print(f"Corrected: {corrected}\n")
 ```
 
 ### Performance Monitoring
 ```python
+from ascii_code import AsciiCode
+import random
+import string
+
 # Track correction success rate
 success_count = 0
 total_trials = 1000
+ascii_code = AsciiCode(k=8, n=12)
 
 for _ in range(total_trials):
-    # Simulation code here
+    original = random.choice(string.ascii_letters)
+    binary = ascii_code.ascii_to_bin[original]
+    encoded = ascii_code.encode_letter(binary)
+    received = ascii_code.simulate_channel_noise(encoded, error_rate=0.1)
+    decoded = ascii_code.decode_letter(received)
     if decoded == original:
         success_count += 1
 
 success_rate = success_count / total_trials
+print(f"Success rate: {success_rate:.2%}")
 ```
 
 ## Limitations and Future Work

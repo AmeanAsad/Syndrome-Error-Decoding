@@ -136,8 +136,13 @@ def visualization(word_limit, num_trials):
     column_labels = ["Avg Error Percentage(%)", "Standard Deviation"]
     table_text = np.zeros((n_ceiling-n_start, 2), dtype=float)
 
-    pl.figure("Simulation Results")
+    # Create a figure with two subplots
+    fig = pl.figure(figsize=(10, 10))
+    gs = fig.add_gridspec(2, 1, height_ratios=[1, 1], hspace=0.3)
+    ax1 = fig.add_subplot(gs[0])
+    ax2 = fig.add_subplot(gs[1])
 
+    # Plot error percentages
     for idx in range(n_start, n_ceiling):
         matrix_index = idx - n_start
         line_label = "8, "+str(idx) + " code"
@@ -145,19 +150,33 @@ def visualization(word_limit, num_trials):
         table_text[matrix_index, :] = [np.mean(
             percentage_matrix[:, matrix_index]), np.std(percentage_matrix[:, matrix_index])]
 
-        pl.plot(word_count, result_matrix[:, matrix_index], label=line_label)
+        ax1.plot(word_count, percentage_matrix[:, matrix_index], label=line_label)
 
-    pl.ylabel("Error(%)*Time(s)")
-    pl.xlabel("Text Word Count")
-    pl.title("Simulation Results with 12.5% Error Rate")
-    pl.legend()
-    pl.plot()
+    ax1.set_ylabel("Error Percentage (%)")
+    ax1.set_xlabel("Text Word Count")
+    ax1.set_title("Error Percentage vs Word Count")
+    ax1.legend(loc='upper left')
+    ax1.grid(True)
+
+    # Plot execution times (convert to milliseconds)
+    times = (result_matrix / percentage_matrix) * 1000  # Convert seconds to milliseconds
+    for idx in range(n_start, n_ceiling):
+        matrix_index = idx - n_start
+        line_label = "8, "+str(idx) + " code"
+        ax2.plot(word_count, times[:, matrix_index], label=line_label)
+
+    ax2.set_ylabel("Execution Time (ms)")
+    ax2.set_xlabel("Text Word Count")
+    ax2.set_title("Execution Time vs Word Count")
+    ax2.legend(loc='upper left')
+    ax2.grid(True)
+
+    pl.tight_layout()
     pl.show()
 
+    # Display statistics table
     table_text = np.around(table_text, 3)
-
     fig, ax = pl.subplots()
-    # hide axes
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
     ax.table(cellText=table_text,
@@ -168,5 +187,4 @@ def visualization(word_limit, num_trials):
 
     return None
 
-
-visualization(50, 5)
+visualization(500, 10)

@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+I wrote this simulation to test the accuracy of the developed linear code.
+The functions below are not nessecary for the LinearCode class to work properly
+but just provide an elegant demonstration of how the code can be used to evaluate
+syndrome decoding as an efficient algorithm for error correction. I developed a
+randomized text generator to get my text"
 
 @author: ameanasad
 """
@@ -12,19 +17,10 @@ import time
 from decoding import AsciiCode, transform_text_to_binary
 from text_generator import randomized_text_generator
 
-"""
-I wrote this simulation to test the accuracy of the developed linear code.
-The functions below are not nessecary for the LinearCode class to work properly
-but just provide an elegant demonstration of how the code can be used to evaluate
-syndrome decoding as an efficient algorithm for error correction. I developed a
-randomized text generator to get my text"
-
-"""
-
 
 def distort_message(binary_letters, generator_m, k, n):
     """
-    - This function randomly distorts one bit in each given codeword in a 
+    - This function randomly distorts one bit in each given codeword in a
     transmitted message.
     - Returns a list of distorted bit codeword vectors.
     - This simulates noisy channel with that distorts 12.5% of received bits
@@ -64,7 +60,7 @@ def decode_text(text, k, n):
 
 def get_error_number(message, received):
     """
-    - Helper function to compare an original message and received text. 
+    - Helper function to compare an original message and received text.
     - Returns number of errors.
     """
     stripped_message = message.replace(" ", "")

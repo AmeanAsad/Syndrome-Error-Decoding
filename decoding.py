@@ -32,9 +32,9 @@ class LinearCode(object):
     def __init__(self, k, n):
         """
         k: Length of message
-        n: Length of codeword 
+        n: Length of codeword
         - Here empty instances of the generator matrix, parity check matrix
-        and syndrome table are created to make them accessible throughout 
+        and syndrome table are created to make them accessible throughout
         the class and to return them without having to call the function.
         """
         self.k = k
@@ -47,12 +47,12 @@ class LinearCode(object):
 
     def generator_matrix(self):
         """
-        - Uses the empty generator matrix instance. 
-        - First creates a k by n empty matrix to represent the skeleton of the 
+        - Uses the empty generator matrix instance.
+        - First creates a k by n empty matrix to represent the skeleton of the
         generator matrix.
-        - A_matrix is the a k by (n-k) matrix which has linearly independent 
-        column vectors. 
-        - Identity_i is a k by k matrix. 
+        - A_matrix is the a k by (n-k) matrix which has linearly independent
+        column vectors.
+        - Identity_i is a k by k matrix.
         """
         self.generator_mat = np.zeros((self.k, self.n), dtype=int)
         A_matrix = np.ones((self.k, self.n-self.k), dtype=int)
@@ -73,8 +73,8 @@ class LinearCode(object):
 
     def parity_check_matrix(self):
         """
-        - The generator matrix is used to construct part of the parity check by 
-        taking the A matrix. 
+        - The generator matrix is used to construct part of the parity check by
+        taking the A matrix.
         - The other part is constructed using the (n-k) by (n-k) identity matrix
 
         """
